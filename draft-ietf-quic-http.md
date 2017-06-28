@@ -319,7 +319,7 @@ Data streams MUST reference a request or response stream.  The referenced stream
 MUST include a HAS_BODY frame.  If a data stream is received that references a
 stream of a different type, the referenced stream does not include a HAS_BODY
 frame, or another data stream already references the identified steam, then the
-connection MUST be terminated with a HTTP_UNMATCHED_BODY error.  Note that due
+connection MUST be terminated with a HTTP_UNMATCHED_DATA error.  Note that due
 to reordering of packets, the referenced stream or HAS_BODY frame might not have
 been received when the data stream is opened.
 
