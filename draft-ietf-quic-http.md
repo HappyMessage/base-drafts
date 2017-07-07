@@ -683,19 +683,23 @@ The frame identifies a client-initiated request by the stream ID that carried
 the request; a server push request is identified by Push ID (see
 {{frame-push-promise}}).
 
-Upon receipt of this frame the server aborts sending the response for the
+When a server receives this frame, it aborts sending the response for the
 identified request.  If the server has not yet started to send the response
 stream for the identified request, it can use the receipt of a CANCEL_REQUEST
 frame to avoid opening a stream.  If a response stream or data stream has been
 opened by the server, the server SHOULD sent a QUIC RST_STREAM frame on those
 streams and cease transmission of the response.
 
+A server can send this frame to indicate that it won't be sending a response for
+the request prior to creation of a response stream.  Once the response stream
+has been created, a RST_STREAM with a CANCELLED code can be used instead.
+
 A client that cancels a request that it initiated SHOULD send a QUIC RST_STREAM
 frame to reset the associated request stream, unless that stream is already
 closed.
 
-A client sends a CANCEL_REQUEST frame on the connection control stream.  Sending
-a CANCEL_REQUEST frame on a stream other than the connection control stream MUST
+A CANCEL_REQUEST frame is sent on the connection control stream.  Sending a
+CANCEL_REQUEST frame on a stream other than the connection control stream MUST
 be treated as a HTTP_WRONG_STREAM error.
 
 The flags defined are:
