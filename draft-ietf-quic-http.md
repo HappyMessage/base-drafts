@@ -727,7 +727,7 @@ The CANCEL_REQUEST frame payload has the following fields:
     request by its stream ID.
 
 A CANCEL_REQUEST frame always contains a four octet payload.  A server MUST
-treat a CANCEL_REQUEST frame payload that is other than 8 octets in length, or a
+treat a CANCEL_REQUEST frame payload that is other than 4 octets in length, or a
 CANCEL_REQUEST frame that identifies a stream that doesn't carry a valid request
 as an HTTP_MALFORMED_CANCEL_REQUEST error.  Note however that due to packet
 reordering, a CANCEL_REQUEST frame could arrive before the request stream that
